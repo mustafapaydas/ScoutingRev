@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}/{{ futbol.isim_soyisim }}{% endblock title %}
+{% block body %}
+    <body>
+    <br><br>
+    <div class="container">
+{% if futbol %}
+<table class="table">
+  <thead>
+  {% if futbol %}
+    <tr>
+      <th scope="col">Ad Soyad</th>
+      <th scope="col">Mevki</th>
+      <th scope="col">Bulunduğu Takım</th>
+      <th scope="col">Ülke</th>
+    </tr>
+  </thead>
+<tbody style="font-size: 20px">
+
+
+    {% for i in futbol %}
+        <tr>
+        <td>
+           <strong> <a href="detail/{{ i.id }}"><img class="mr-4" style="width: 40px;height: 40px;" src="{{ i.image.url }}">{{ i.isim_soyisim }}</a>
+           </strong> </td>
+        <td>
+            {{ i.mevki}}
+        </td>
+        <td>
+            {% if i.nowTakim == None %}
+                Takımı Yok
+            {% else %}
+                {{ i.nowTakim }}
+            {% endif %}
+        </td>
+        <td>
+            {{ i.ulke}}
+        </td>
+        </tr>
+
+    {% endfor %}
+
+
+
+{% endif %}
+
+
+
+</tbody>
+
+</table>
+</div>
+    <br><br><br><br><br><br>
+
+
+     {% else %}
+    <div style="text-align: center" class="alert alert-danger">
+        Futbolcu Bulunamadı!
+
+    </div>
+{% endif %}
+    
+    </body>
+{% endblock body %}

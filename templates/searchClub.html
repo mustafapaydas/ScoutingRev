@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+    <body>
+    <table><tbody>
+{% if clubs %}
+      {% for i in clubs %}
+      <tr>
+        <td>
+           <strong> <a href="clubs/{{ i.id }}">{% if i.bayrak %}<img class="mr-4" style="width: 40px;height: 40px;" src="{{ i.bayrak.url }}">{% endif %}{{ i.takimismi }}</a>
+           </strong> </td>
+        <td>
+            {{ i.sira}}
+        </td>
+
+
+        </tr>
+      {% endfor %}
+      {% endif %}
+
+    </tbody></table>
+    </body>
+{% endblock body %}

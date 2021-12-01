@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <br><br>
+    {% if messages %}
+<div class="container">
+    {% for message in messages %}
+    <div  {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+    <body>
+
+
+
+
+
+    <div id="haber">
+    <h1 style="font-size: 30px;text-align: center">Haftanın Yıldızları</h1>
+{% for j in st %}
+<div style="margin-left:350px">
+  <div style="width: 60%; " id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img style="width: 100%; height:450px" style="width: 100%;" class="resim" src="{{ j.birinci_resim.url  }}" alt="First slide">
+        <h3 style="text-align: center">{{ j.birinci_isim }}</h3>
+
+    </div>
+    <div class="carousel-item">
+      <img style="width: 100%; height:450px" class="resim" src="{{ j.ikinci_resim.url }}" alt="Second slide">
+        <h3 style="text-align: center">{{ j.ikinci_isim }}</h3>
+    </div>
+    <div class="carousel-item">
+      <img style="width: 100%; height:450px" class="resim" src="{{ j.ucuncu_resim.url }}" alt="Third slide">
+        <h3 style="text-align: center">{{ j.ucuncu_isim }}</h3>
+
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+{% endfor %}
+    </div>
+
+
+<h1 style="text-align: center">Futbolcular</h1>
+
+<div class="container">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Ad Soyad</th>
+      <th scope="col">Mevki</th>
+      <th scope="col">Bulunduğu Takım</th>
+      <th scope="col">Uyruğu</th>
+    </tr>
+  </thead>
+<tbody style="font-size: 20px">
+    {% for i in futbol%}
+        <tr>
+        <td>
+           <strong> <a href="detail/{{ i.id }}">{% if i.image %}<img class="mr-4" style="width: 40px;height: 40px;" src="{{ i.image.url }}">{% endif %}{{ i.isim_soyisim }}</a>
+           </strong> </td>
+        <td>
+            {{ i.mevki}}
+        </td>
+        <td>
+            {% if i.nowTakim == None %}
+                Takımı Yok
+            {% else %}
+                {{ i.nowTakim }}
+            {% endif %}
+        </td>
+        <td>
+            {{ i.ulke}}
+        </td>
+        </tr>
+
+    {% endfor %}
+</tbody>
+
+</table>
+</div>
+</body>
+{% endblock body %}

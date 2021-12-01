@@ -1,0 +1,91 @@
+{#{% extends "base.html" %}#}
+{#{% block title %}/{{ clubs.takimismi }}{% endblock title %}#}
+{#{% block body %}#}
+{##}
+{#{% endblock %}#}
+{#<body>#}
+{##}
+{#</body>#}
+
+
+
+
+{% extends "base.html" %}
+{% block title %}/{{ clubs.takimismi }}{% endblock title %}
+
+{% block body %}
+    <body>
+<h1 style="text-align: center; font-family: 'OSL';color: #2c476d">{{ clubs.takimismi }}</h1>
+    <div align="center"><img class="resim" src="{{ clubs.bayrak.url }}" alt="First slide"></div>
+
+<br><br><br>
+
+
+
+<div class="container" id="git">
+    {% if messages %}
+            <div class="container">
+                {% for message in messages %}
+                <div  {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+
+
+</div>
+{% if request.user.is_authenticated %}
+<div class="container">
+ <h5 class="card-header">Yorum Ekle:</h5>
+          <div class="card-body">
+            <form method = "post" action = "{% url 'coments' clubs.id %}">
+              {% csrf_token %}
+
+              <div class="form-group">
+                  <label for="formGroupExampleInput">Yorum</label>
+                <textarea name = "Yorumumuz" class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-danger">Ekle</button>
+            </form>
+          </div>
+
+
+
+{% endif %}
+
+</div>
+
+{% if yorum %}
+<div class="container">
+{% for yorumm in yorum  %}
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+           <a href="#"> <h5 class="mt-0">{{yorumm.author}}</h5><hr><br></a>
+
+            <p style="font-size: 25px; font-family: Dialog">{{yorumm.comment_content}}</p><br>
+              <p style="font-size: 15px"> {{yorumm.comment_date}} tarihinde eklendi.</p>
+              <hr><br>
+
+          </div>
+        </div>
+
+      {% endfor %}
+</div>
+
+{% else %}
+    <div class="container">
+    <div class="alert alert-danger">
+        Henüz Yorum Yok ilk Yorum Yapan Siz olun
+    </div>
+</div>
+{    {% endif %}}
+
+
+
+
+
+</div>
+    </body>
+{% endblock body %}

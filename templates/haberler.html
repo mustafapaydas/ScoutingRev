@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}/Haberler{% endblock title %}
+{% block body %}
+<body>
+{% for i in new %}
+    <hr>
+    <div class="container">
+
+    <h1 style="text-align: center; font-family:'OSL';color: #2c476d">{{ i.baslik1 }}</h1>
+    <br>
+        <div align="center"><img style="width: 400px;height: 400px" src="{{ i.resim1.url }}"></div>
+    <br>
+        <strong><p style="font-size: 20px;text-align: center">{{ i.yazi }}</p></strong>
+    <br>
+    <p>{{ i.tarih }}</p>
+    </div>
+
+    {% endfor %}
+    </body>
+{% endblock body %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}/Takımlar{% endblock title %}
+
+{% block body %}
+    <body>
+<div class="container">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Takım İsmi</th>
+      <th scope="col">O</th>
+      <th scope="col">G</th>
+      <th scope="col">B</th>
+      <th scope="col">M</th>
+      <th scope="col">A</th>
+      <th scope="col">Y</th>
+      <th scope="col">AV</th>
+      <th scope="col">P</th>
+
+    </tr>
+  </thead>
+<tbody style="font-size: 20px">
+    {% for i in clubs%}
+        <tr>
+        <td>
+           <strong> <a href="clubs/{{ i.id }}">{% if i.bayrak %}<img class="mr-4" style="width: 40px;height: 40px;" src="{{ i.bayrak.url }}">{% endif %}{{ i.takimismi }}</a>
+           </strong> </td>
+        <td>
+            {{ i.o}}
+        </td>
+
+        <td>
+            {{ i.g}}
+        </td><td>
+            {{ i.b}}
+        </td><td>
+            {{ i.m}}
+        </td><td>
+            {{ i.a}}
+        </td><td>
+            {{ i.y}}
+        </td>
+
+<td>
+            {{ i.av}}
+
+</td>
+        <td>
+            {{ i.p}}
+        </td>
+
+        </tr>
+
+    {% endfor %}
+</tbody>
+
+</table>
+</div>
+
+</body>
+{% endblock body %}
