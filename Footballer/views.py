@@ -30,6 +30,7 @@ def yorumEkle(request,id):
     if request.method == "POST":
         yazar=request.user
         yorum=request.POST.get("comment_content")
+
         for i in argo:
             if i in yorum:
                 messages.warning(request,"Sakıncalı Eylem {} kelimesinden dolayı uyarıldınız...".format(i))

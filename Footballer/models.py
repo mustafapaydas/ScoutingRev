@@ -1,17 +1,20 @@
 from django.db import models
 from django.utils import timezone
 
+from Takım.models import Club
+
 
 class Footballer(models.Model):
     isim_soyisim=models.CharField(max_length=50,verbose_name="İsim Soyisim")
     dogumYili=models.CharField(max_length=4,verbose_name="Futbolcunun Doğum Yılı")
     ulke=models.CharField(max_length=50,verbose_name="Futbolcunun Uyruğu")
-    nowTakim=models.CharField(max_length=50,verbose_name="Futbolcunun Oynadığı Takım",blank=True,null=True)
+    #nowTakim=models.CharField(max_length=50,verbose_name="Futbolcunun Oynadığı Takım",blank=True,null=True)
     enSonFiyat=models.CharField(max_length=20,verbose_name="Son Satış Bedeli",blank=True,null=True)
     sozlesme_tarihi=models.DateTimeField(auto_created=True,verbose_name="Bonservis Bitiş Tarihi")
     mevki=models.CharField(max_length=50,verbose_name="Oynadığı Mevki")
     ayak = models.CharField(max_length=50,verbose_name="Etkili Ayak")
-    # futbolcunun_managerri=
+    nowTakim=models.ForeignKey(Club,on_delete=models.CASCADE)
+
 
     image=models.FileField(blank=True,null=True,verbose_name="Fotoğraf ekleme")
     image1=models.FileField(blank=True,null=True,verbose_name="Fotoğraf ekleme")
